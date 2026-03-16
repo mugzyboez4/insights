@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RCA Artist Insights</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0F0E0E;--dark:#1A1A1A;--off-white:#FCFDF8;--chartreuse:#CDF851;--flame:#FF4A23;--slate:#3E3F41;--fog:#B0A9BE;--fog-dim:#706B7A;--teal:#5BC0BE;--pink:#FF6B9D;--amber:#FFB347}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--black);color:var(--off-white);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.c{max-width:720px;margin:0 auto;padding:0 32px}
+.hero{padding:80px 0 48px;text-align:center}
+.hero-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--chartreuse);letter-spacing:4px;margin-bottom:24px}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,7vw,64px);color:var(--off-white);letter-spacing:2px;line-height:0.95;margin-bottom:16px}
+.hero-sub{font-size:14px;color:var(--fog);max-width:400px;margin:0 auto}
+.artists{padding:48px 0}
+.artist-card{display:block;background:var(--dark);padding:28px 32px;margin-bottom:12px;border-left:4px solid var(--slate);text-decoration:none;transition:all 0.3s;position:relative;overflow:hidden}
+.artist-card:hover{border-left-color:var(--chartreuse);transform:translateX(4px)}
+.artist-card::after{content:'→';position:absolute;right:28px;top:50%;transform:translateY(-50%);font-family:'DM Mono',monospace;font-size:18px;color:var(--slate);transition:color 0.3s}
+.artist-card:hover::after{color:var(--chartreuse)}
+.artist-name{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--off-white);letter-spacing:1px;line-height:1;margin-bottom:6px}
+.artist-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--fog-dim);letter-spacing:1px}
+.artist-tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.artist-tags span{font-size:10px;font-weight:600;padding:3px 10px;background:rgba(205,248,81,0.06);color:var(--fog)}
+.review-badge{position:absolute;top:12px;right:60px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;background:rgba(255,179,71,0.1);color:var(--amber);padding:3px 10px}
+.foot{padding:40px 0 60px;text-align:center}
+.foot p{font-family:'DM Mono',monospace;font-size:10px;color:var(--fog-dim);letter-spacing:0.5px}
+@media(max-width:600px){.c{padding:0 20px}.artist-card{padding:20px 24px}}
+</style>
+</head>
+<body>
+<div class="c">
+
+<div class="hero">
+  <div class="hero-logo">RCA</div>
+  <h1 class="hero-title">Artist Insights</h1>
+  <p class="hero-sub">Streaming, audience, and social profiles &mdash; built from Strategic Analytics data.</p>
+</div>
+
+<div class="artists">
+
+  <a href="horsegirl-insights-v2.html" class="artist-card">
+    <div class="artist-name">horsegiirL</div>
+    <div class="artist-meta">March 16, 2026 &middot; Luminate &middot; Spotify &middot; Chartmetric</div>
+    <div class="artist-tags">
+      <span>318K Weekly US</span>
+      <span>+180% TikTok YoY</span>
+      <span>Hyperpop / Electronic</span>
+    </div>
+  </a>
+
+  <a href="horsegirl-review.html" class="artist-card">
+    <span class="review-badge">REVIEW</span>
+    <div class="artist-name">horsegiirL</div>
+    <div class="artist-meta">Review copy &middot; Add notes per section &middot; Export as .txt</div>
+    <div class="artist-tags">
+      <span>Interactive Notes</span>
+      <span>Save Locally</span>
+      <span>Export</span>
+    </div>
+  </a>
+
+  <a href="ca7riel-paco-insights.html" class="artist-card">
+    <div class="artist-name">CA7RIEL &amp; Paco Amoroso</div>
+    <div class="artist-meta">March 12, 2026 &middot; Luminate &middot; Spotify &middot; Chartmetric</div>
+    <div class="artist-tags">
+      <span>6.8M Weekly Global</span>
+      <span>47M Tiny Desk Views</span>
+      <span>Latin Alternative</span>
+    </div>
+  </a>
+
+</div>
+
+<div class="foot">
+  <p>Internal Use Only &middot; Data: Strategic Analytics</p>
+</div>
+
+</div>
+</body>
+</html>

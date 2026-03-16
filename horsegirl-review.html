@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>horsegiirL — Artist Insights — March 2026</title>
+<title>horsegiirL — Artist Insights — Review Copy</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -88,11 +88,40 @@ body{background:var(--black);color:var(--off-white);font-family:'Outfit',sans-se
 .foot .rca{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--chartreuse);letter-spacing:4px;margin-bottom:8px}
 .foot p{font-family:'DM Mono',monospace;font-size:10px;color:var(--fog-dim);letter-spacing:0.5px}
 @media(max-width:700px){.c{padding:0 20px}.hero-title{font-size:44px}.two{grid-template-columns:1fr}.three{grid-template-columns:1fr}.stats{flex-direction:column}.plats{grid-template-columns:1fr}.br{grid-template-columns:140px 1fr 44px}.nav-link{padding:6px 8px;font-size:10px}}
+
+/* ═══ REVIEW / NOTES SYSTEM ═══ */
+.note-section{position:relative;transition:outline 0.2s}
+.note-section:hover{outline:1px dashed rgba(205,248,81,0.15);outline-offset:8px}
+.note-btn{position:absolute;top:4px;right:0;opacity:0;transition:opacity 0.2s;background:var(--dark);border:1px solid var(--slate);color:var(--fog-dim);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;padding:4px 10px;cursor:pointer;z-index:10}
+.note-btn:hover{border-color:var(--chartreuse);color:var(--chartreuse)}
+.note-section:hover .note-btn{opacity:1}
+.note-btn.has-note{opacity:1;border-color:var(--amber);color:var(--amber)}
+.note-area{display:none;margin-top:12px;padding:12px 14px;background:rgba(255,179,71,0.04);border-left:3px solid var(--amber);position:relative}
+.note-area.open{display:block}
+.note-area textarea{width:100%;min-height:60px;background:transparent;border:none;color:var(--off-white);font-family:'Outfit',sans-serif;font-size:13px;line-height:1.5;resize:vertical;outline:none}
+.note-area textarea::placeholder{color:var(--fog-dim)}
+.note-area .note-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--fog-dim);margin-top:6px;display:flex;gap:12px;align-items:center}
+.note-area .note-save{background:none;border:1px solid var(--amber);color:var(--amber);font-family:'DM Mono',monospace;font-size:9px;padding:2px 10px;cursor:pointer;letter-spacing:1px}
+.note-area .note-save:hover{background:rgba(255,179,71,0.1)}
+.note-area .note-delete{background:none;border:none;color:var(--fog-dim);font-family:'DM Mono',monospace;font-size:9px;cursor:pointer;letter-spacing:1px}
+.note-area .note-delete:hover{color:var(--flame)}
+
+/* Review toolbar */
+.review-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(26,26,26,0.95);backdrop-filter:blur(12px);border-top:1px solid var(--slate);padding:10px 0;transform:translateY(0);transition:transform 0.3s}
+.review-bar-inner{max-width:960px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:16px}
+.review-bar .rb-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber)}
+.review-bar .rb-count{font-family:'DM Mono',monospace;font-size:11px;color:var(--fog)}
+.review-bar .rb-btn{background:none;border:1px solid var(--slate);color:var(--fog);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;padding:6px 14px;cursor:pointer;transition:all 0.2s}
+.review-bar .rb-btn:hover{border-color:var(--chartreuse);color:var(--chartreuse)}
+.review-bar .rb-btn.export{border-color:var(--amber);color:var(--amber)}
+.review-bar .rb-btn.export:hover{background:rgba(255,179,71,0.1)}
+.review-bar .rb-spacer{flex:1}
 </style>
 </head>
 <body>
 
 <nav class="nav" id="nav"><div class="nav-inner"><div class="nav-logo">RCA</div>
+<span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;background:rgba(255,179,71,0.12);color:var(--amber);padding:3px 10px;margin-right:auto">REVIEW MODE</span>
 <a href="#streaming" class="nav-link active" data-section="streaming">Streaming</a>
 <a href="#audience" class="nav-link" data-section="audience">Audience</a>
 <a href="#socials" class="nav-link" data-section="socials">Socials</a>
@@ -103,7 +132,7 @@ body{background:var(--black);color:var(--off-white);font-family:'Outfit',sans-se
 <div class="hero">
   <p class="hero-eyebrow">Artist Insights &middot; Internal Use Only</p>
   <h1 class="hero-title">horsegiirL</h1>
-  <p class="hero-sub">Streaming, audience, social &mdash; a full picture of where the artist is right now.</p>
+  <p class="hero-sub">Streaming, audience, social &mdash; a full picture of where the artist is right now.<br><span style="color:var(--amber);font-size:12px">Review copy &mdash; hover any section to add notes. Notes save locally in your browser.</span></p>
   <p class="hero-meta">March 16, 2026<br>Data: Strategic Analytics<br>Sources: Luminate &middot; Spotify Internal &middot; Chartmetric</p>
 </div>
 
@@ -458,6 +487,181 @@ function updateNav(){
 }
 window.addEventListener('scroll',updateNav,{passive:true});
 updateNav();
+
+// ═══ REVIEW / NOTES SYSTEM ═══
+(function(){
+  var STORAGE_KEY = 'horsegirl_review_notes';
+
+  function loadNotes(){ try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(e){return{}} }
+  function saveNotes(notes){ localStorage.setItem(STORAGE_KEY, JSON.stringify(notes)); updateCount(); }
+
+  // Find all annotatable sections
+  var targets = [];
+  // 5 Things to Know
+  var fiveThings = document.querySelector('[style*="5 Things"]');
+  if(fiveThings) targets.push({el:fiveThings.closest('div[style*="padding:24px"]'), id:'5-things', label:'5 Things to Know'});
+
+  // All .sub sections
+  document.querySelectorAll('.sub').forEach(function(el,i){
+    var title = el.querySelector('.sub-title');
+    var label = title ? title.textContent.trim() : 'Section '+(i+1);
+    var id = 'sub-'+label.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-+$/,'');
+    targets.push({el:el, id:id, label:label});
+  });
+
+  // Stats blocks (artist level)
+  var statsRow = document.querySelector('.stats');
+  if(statsRow) targets.push({el:statsRow, id:'artist-stats', label:'Artist Level Stats'});
+
+  // Global + US markets wrapper
+  document.querySelectorAll('.sec').forEach(function(sec){
+    var title = sec.querySelector('.sec-title');
+    if(title && !targets.find(function(t){return t.el===sec})){
+      var label = title.textContent.trim();
+      var id = 'sec-'+label.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+    }
+  });
+
+  // Social platform cards
+  var platGrid = document.querySelector('.plats');
+  if(platGrid) targets.push({el:platGrid, id:'social-platforms', label:'Social Platforms'});
+
+  // Inject note buttons and areas
+  var notes = loadNotes();
+
+  targets.forEach(function(t){
+    t.el.classList.add('note-section');
+    t.el.style.position = 'relative';
+
+    // Button
+    var btn = document.createElement('button');
+    btn.className = 'note-btn' + (notes[t.id] ? ' has-note' : '');
+    btn.textContent = notes[t.id] ? '✎ NOTE' : '+ NOTE';
+    btn.onclick = function(){ toggleNote(t.id); };
+    btn.setAttribute('data-note-target', t.id);
+    t.el.appendChild(btn);
+
+    // Note area
+    var area = document.createElement('div');
+    area.className = 'note-area' + (notes[t.id] ? ' open' : '');
+    area.id = 'note-' + t.id;
+    area.innerHTML = '<textarea placeholder="Add a note about ' + t.label + '...">' + (notes[t.id] ? notes[t.id].text : '') + '</textarea>'
+      + '<div class="note-meta">'
+      + '<button class="note-save" onclick="saveNote(\'' + t.id + '\')">Save</button>'
+      + '<button class="note-delete" onclick="deleteNote(\'' + t.id + '\')">Delete</button>'
+      + (notes[t.id] ? '<span>Saved ' + notes[t.id].date + '</span>' : '')
+      + '</div>';
+    t.el.appendChild(area);
+  });
+
+  // Toggle
+  window.toggleNote = function(id){
+    var area = document.getElementById('note-'+id);
+    area.classList.toggle('open');
+    if(area.classList.contains('open')) area.querySelector('textarea').focus();
+  };
+
+  // Save
+  window.saveNote = function(id){
+    var area = document.getElementById('note-'+id);
+    var text = area.querySelector('textarea').value.trim();
+    var notes = loadNotes();
+    if(text){
+      notes[id] = {text:text, date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})};
+      saveNotes(notes);
+      // Update button
+      var btn = document.querySelector('[data-note-target="'+id+'"]');
+      btn.className = 'note-btn has-note';
+      btn.textContent = '✎ NOTE';
+      // Update meta
+      var meta = area.querySelector('.note-meta');
+      var existing = meta.querySelector('span');
+      if(existing) existing.textContent = 'Saved ' + notes[id].date;
+      else { var s = document.createElement('span'); s.textContent = 'Saved ' + notes[id].date; meta.appendChild(s); }
+    }
+  };
+
+  // Delete
+  window.deleteNote = function(id){
+    var notes = loadNotes();
+    delete notes[id];
+    saveNotes(notes);
+    var area = document.getElementById('note-'+id);
+    area.querySelector('textarea').value = '';
+    area.classList.remove('open');
+    var btn = document.querySelector('[data-note-target="'+id+'"]');
+    btn.className = 'note-btn';
+    btn.textContent = '+ NOTE';
+    var meta = area.querySelector('.note-meta');
+    var existing = meta.querySelector('span');
+    if(existing) existing.remove();
+  };
+
+  // Export
+  window.exportNotes = function(){
+    var notes = loadNotes();
+    var keys = Object.keys(notes);
+    if(keys.length === 0){ alert('No notes to export.'); return; }
+    var out = 'REVIEW NOTES — horsegiirL Artist Insights\n';
+    out += 'Exported: ' + new Date().toLocaleString() + '\n';
+    out += '═'.repeat(50) + '\n\n';
+    // Map IDs back to labels
+    var labelMap = {};
+    targets.forEach(function(t){ labelMap[t.id] = t.label; });
+    keys.forEach(function(k){
+      out += (labelMap[k] || k).toUpperCase() + '\n';
+      out += notes[k].text + '\n';
+      out += '(' + notes[k].date + ')\n\n';
+    });
+    // Download
+    var blob = new Blob([out], {type:'text/plain'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'horsegirl_review_notes_' + new Date().toISOString().slice(0,10) + '.txt';
+    a.click();
+  };
+
+  // Clear all
+  window.clearAllNotes = function(){
+    if(!confirm('Clear all notes? This cannot be undone.')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('.note-area').forEach(function(a){
+      a.querySelector('textarea').value = '';
+      a.classList.remove('open');
+      var s = a.querySelector('.note-meta span');
+      if(s) s.remove();
+    });
+    document.querySelectorAll('.note-btn').forEach(function(b){
+      b.className = 'note-btn';
+      b.textContent = '+ NOTE';
+    });
+    updateCount();
+  };
+
+  // Count
+  function updateCount(){
+    var notes = loadNotes();
+    var n = Object.keys(notes).length;
+    var el = document.getElementById('noteCount');
+    if(el) el.textContent = n + ' note' + (n!==1?'s':'');
+  }
+
+  // Build toolbar
+  var bar = document.createElement('div');
+  bar.className = 'review-bar';
+  bar.innerHTML = '<div class="review-bar-inner">'
+    + '<span class="rb-label">Review Notes</span>'
+    + '<span class="rb-count" id="noteCount"></span>'
+    + '<span class="rb-spacer"></span>'
+    + '<button class="rb-btn" onclick="clearAllNotes()">Clear All</button>'
+    + '<button class="rb-btn export" onclick="exportNotes()">Export Notes ↓</button>'
+    + '</div>';
+  document.body.appendChild(bar);
+  // Pad body so toolbar doesn't cover content
+  document.body.style.paddingBottom = '60px';
+
+  updateCount();
+})();
 </script>
 </body>
 </html>
